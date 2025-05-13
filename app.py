@@ -20,7 +20,7 @@ try:
         password="tssr14*",
         host="localhost",      # ou l'IP de l'hôte si ce n'est pas sur la même machine
         port=3306,            # port par défaut de MariaDB
-        database="TA_BASE"    # optionnel, selon ta configuration
+        database="NYXDB"    # optionnel, selon ta configuration
     )
     print("yes")
     conn.close()
