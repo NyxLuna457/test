@@ -1,6 +1,7 @@
 from flask import Flask, render_template_string
 import mariadb
 import sys
+import os
 from dotenv import load_dotenv
 
 load_dotenv()
