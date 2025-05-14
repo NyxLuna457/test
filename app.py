@@ -5,7 +5,7 @@ db_config = {
         'user' : 'root',
         'password' : 'tssr14*',
         'host' : 'localhost',      # ou l'IP de l'hôte si ce n'est pas sur la même machine
-        'port' : '3306',            # port par défaut de MariaDB
+        'port' : 3306,            # port par défaut de MariaDB
         'database' : 'NYXDB'    # optionnel, selon ta configuration
      }
 try:
