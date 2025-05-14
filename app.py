@@ -1,16 +1,21 @@
 from flask import Flask, render_template_string
 import mariadb
 import sys
-db_config = {        
-        'user' : 'root',
-        'password' : 'tssr14*',
-        'host' : 'localhost',      # ou l'IP de l'hôte si ce n'est pas sur la même machine
-        'port' : 3306,            # port par défaut de MariaDB
-        'database' : 'NYXDB'    # optionnel, selon ta configuration
-     }
+from dotenv import load_dotenv
+
+load_dotenv()
+
+app = Flask(__name__)
+
+db_config = {
+    'host': os.getenv('DB_HOST'),
+    'port': int(os.getenv('DB_PORT')),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'database': os.getenv('DB_NAME')
+}
 
 try:
-    # Remplace les valeurs ci-dessous par tes identifiants
     conn = mariadb.connect(**db_config)
     conn.ping()
     print("yes")
@@ -18,9 +23,6 @@ try:
 except mariadb.Error as err:
     print(f"Erreur lors de la connexion à MariaDB : {err}")
     
-
-
-app = Flask(__name__)
 
 @app.route('/')
 def afficher_personnes():
