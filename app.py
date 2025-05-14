@@ -18,6 +18,10 @@ try:
 except mariadb.Error as err:
     print(f"Erreur lors de la connexion à MariaDB : {err}")
     
+
+
+app = Flask(__name__)
+
 @app.route('/')
 def afficher_personnes():
     try:
@@ -48,8 +52,6 @@ def afficher_personnes():
     </table>
     '''
     return render_template_string(html, personnes=personnes)
-
-app = Flask(__name__)
 
 @app.route('/')
 def home ():
