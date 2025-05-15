@@ -1,12 +1,37 @@
-from flask import Flask, render_template_string
+from flask import Flask, render_template_string, jsonify
 import mariadb
 import sys
 import os
+import mysql.connector
+from mysql.connector import Error
 from dotenv import load_dotenv
 
 load_dotenv()
 
 app = Flask(__name__)
+
+def check_db_connection():
+    try:
+        conn = mysql.connector.connect(
+            host=os.getenv('DB_HOST'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_DATABASE')
+        )
+        if conn.is_connected():
+            conn.close()
+            return True
+        else:
+            return False
+    except Error:
+        return False
+
+@app.route('/bdd-health')
+def bdd_health():
+    if check_db_connection():
+        return jsonify({'status': 'ok'}), 200
+    else:
+        return jsonify({'status': 'not ok'}), 400
 
 db_config = {
     'host': os.getenv('DB_HOST'),
