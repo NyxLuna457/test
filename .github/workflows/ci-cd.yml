@@ -23,7 +23,7 @@ jobs:
         sleep 10
         tailscale version
         tailscale status || true
-        sudo ./tailscale up --auth-key "${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner --ssh
+        sudo tailscale up --auth-key "${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner --ssh
 
     - name: Set up SSH key
       run: |
