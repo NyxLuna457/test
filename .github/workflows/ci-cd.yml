@@ -3,7 +3,7 @@ name: Deploy via Tailscale SSH
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
