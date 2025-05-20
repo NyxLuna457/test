@@ -15,15 +15,11 @@ jobs:
 
     - name: Install Tailscale and connect
       run: |
-        curl -fsSL https://pkgs.tailscale.com/stable/tailscale_1.66.4_amd64.tgz | tar xz
-        sudo install tailscale_1.66.4_amd64/tailscale /usr/bin/tailscale
-        sudo install tailscale_1.66.4_amd64/tailscaled /usr/sbin/tailscaled
-        sudo mkdir -p /var/lib/tailscale
-        sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
+        curl -fsSL https://tailscale.com/install.sh | sh
         sleep 10
         tailscale version
         tailscale status || true
-        sudo tailscale up --auth-key "${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner --ssh
+        sudo tailscale up --auth-key "${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner
 
     - name: Set up SSH key
       run: |
