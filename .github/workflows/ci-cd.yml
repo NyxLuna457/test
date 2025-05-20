@@ -24,8 +24,8 @@ jobs:
         echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
         chmod 600 ~/.ssh/id_ed25519
         ssh-keyscan -H ${{ secrets.TAILSCALE_SSH_HOST }} >> ~/.ssh/known_hosts || true
-        
-        TAILSCALE_IP=$(tailscale ip -4 --hostname ${{ secrets.TAILSCALE_SSH_HOST }})
+
+        TAILSCALE_IP=$(tailscale ip -4 ${{ secrets.TAILSCALE_SSH_HOST }})
         echo "Tailscale IP: $TAILSCALE_IP"
         echo "$TAILSCALE_IP" > tailscale_ip.txt
         ssh-keyscan -H "$TAILSCALE_IP" >> ~/.ssh/known_hosts || true
