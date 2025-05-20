@@ -45,3 +45,14 @@ jobs:
 
           echo "✅ Deployment finished."
         EOF
+    - name: Restart Flask app with PM2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.TAILSCALE_SSH_HOST }}
+        username: ${{ secrets.TAILSCALE_SSH_USER }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+         cd /home/${{ secrets.TAILSCALE_SSH_USER }}/app
+         pip install -r requirements.txt
+         pm2 restart flask-app
+
