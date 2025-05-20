@@ -20,7 +20,9 @@ jobs:
         sudo install tailscale_1.66.4_amd64/tailscaled /usr/sbin/tailscaled
         sudo mkdir -p /var/lib/tailscale
         sudo tailscaled --tun=userspace-networking --socks5-server=localhost:1055 &
-        sleep 5
+        sleep 10
+        tailscale version
+        tailscale status || true
         sudo tailscale up --auth-key"${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner --ssh
 
     - name: Set up SSH key
