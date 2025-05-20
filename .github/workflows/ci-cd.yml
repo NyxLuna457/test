@@ -52,7 +52,7 @@ jobs:
         username: ${{ secrets.TAILSCALE_SSH_USER }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
-         cd /home/${{ secrets.TAILSCALE_SSH_USER }}/app
+         cd /home/${{ secrets.TAILSCALE_SSH_USER }}/test
          pip install -r requirements.txt
          pm2 restart flask-app
 
