@@ -12,15 +12,11 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
-
-    - name: Install Tailscale and connect
-      run: |
-        curl -fsSL https://tailscale.com/install.sh | sh
-        sleep 10
-        tailscale version
-        tailscale status || true
-        echo ${{ secrets.SSH_PRIVATE_KEY }}
-        sudo tailscale up --auth-key=${{ secrets.TAILSCALE_AUTH_KEY }} --hostname=github-runner
+      
+    - name: Setup Tailscale
+      uses: tailscale/github-action@v2
+      with:
+        authkey: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Set up SSH key
       run: |
