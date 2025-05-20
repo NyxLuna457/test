@@ -16,7 +16,7 @@ jobs:
     - name: Install Tailscale and connect
       run: |
         curl -fsSL https://tailscale.com/install.sh | sh
-        sudo tailscale up --authkey"${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner --ssh
+        sudo tailscale up --auth-key"${{ secrets.TAILSCALE_AUTH_KEY }}" --hostname=github-runner --ssh
 
     - name: Set up SSH key
       run: |
