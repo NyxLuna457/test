@@ -63,7 +63,7 @@ def afficher_personnes():
 
     # Template HTML simple
     html = '''
-    <h1>Liste des supers personnes</h1>
+    <h1>Liste des incroyables personnes</h1>
     <table border="1">
         <tr>
             <th>ID</th><th>Nom</th><th>Prénom</th><th>Âge</th><th>Job</th>
